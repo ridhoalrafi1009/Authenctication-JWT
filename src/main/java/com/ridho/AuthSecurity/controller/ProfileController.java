@@ -6,10 +6,13 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ridho.AuthSecurity.models.UserProfile;
+import com.ridho.AuthSecurity.models.request.ProfileUpdateRequest;
 
 @RestController
 public class ProfileController {
@@ -61,5 +64,39 @@ public class ProfileController {
 
     private UserProfile getProfileInfo(String email) {
         return new UserProfile(email, "ridho", "alrafi", "https://yoururlapi.com/profile.jpeg");
+    }
+
+    @PutMapping("/private")
+    public ResponseEntity<Map<String, Object>> updateProfile(
+            @RequestHeader("Authorization") String authorizationHeader,
+            @RequestBody ProfileUpdateRequest updateRequest) {
+
+        String token = extractTokenFromHeader(authorizationHeader);
+
+        if (token == null) {
+            // Tangani kesalahan otorisasi
+        }
+
+        String email = decodeTokenAndGetEmail(token);
+
+        UserProfile userProfile = getProfileInfo(email);
+
+        if (userProfile == null) {
+            // Tangani kesalahan profil tidak ditemukan
+        }
+
+        // Perbarui data profil dengan data dari updateRequest
+        userProfile.setFirstName(updateRequest.getFirstName());
+        userProfile.setLastName(updateRequest.getLastName());
+        userProfile.setProfil_image(updateRequest.getProfil_image());
+
+        // Simpan data profil yang diperbarui (misalnya, ke database)
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", 0);
+        response.put("message", "Profil berhasil diperbarui");
+        response.put("data", userProfile);
+
+        return ResponseEntity.ok(response);
     }
 }

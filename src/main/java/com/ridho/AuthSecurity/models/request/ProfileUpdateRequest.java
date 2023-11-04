@@ -3,7 +3,7 @@ package com.ridho.AuthSecurity.models.request;
 public class ProfileUpdateRequest {
     private String firstName;
     private String lastName;
-    private String profilImage;
+    private String profil_image;
 
     public String getFirstName() {
         return firstName;
@@ -21,11 +21,11 @@ public class ProfileUpdateRequest {
         this.lastName = lastName;
     }
 
-    public String getProfilImage() {
-        return profilImage;
+    public String getProfil_image() {
+        return profil_image;
     }
 
-    public void setProfilImage(String profilImage) {
-        this.profilImage = profilImage;
+    public void setProfil_image(String profil_image) {
+        this.profil_image = profil_image;
     }
 }
