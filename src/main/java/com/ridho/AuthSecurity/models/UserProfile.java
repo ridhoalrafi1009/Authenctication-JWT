@@ -2,13 +2,17 @@ package com.ridho.AuthSecurity.models;
 
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("userProfile")
+@Table("userprofile")
 public class UserProfile {
     private Long id;
     private String email;
     private String firstName;
     private String lastName;
     private String profil_image;
+
+    public UserProfile() {
+
+    }
 
     public UserProfile(String email, String firstName, String lastName, String profil_image) {
         this.email = email;
@@ -53,7 +57,7 @@ public class UserProfile {
         return profil_image;
     }
 
-    public void setProfil_image(String profile_image) {
-        this.profil_image = profile_image;
+    public void setProfil_image(String profil_image) {
+        this.profil_image = profil_image;
     }
 }

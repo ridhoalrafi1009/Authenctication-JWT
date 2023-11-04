@@ -33,8 +33,8 @@ public class JdbcUserRepository implements UserRepository {
     private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
         User user = new User();
         user.setId(rs.getLong("id"));
-        user.setFirstName(rs.getString("first_name"));
-        user.setLastName(rs.getString("last_name"));
+        user.setFirstName(rs.getString("firstName"));
+        user.setLastName(rs.getString("lastName"));
         user.setEmail(rs.getString("email"));
         user.setPassword(rs.getString("password"));
         return user;
