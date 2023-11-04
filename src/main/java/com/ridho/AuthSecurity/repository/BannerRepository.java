@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.ridho.AuthSecurity.models.Banner;
 import com.ridho.AuthSecurity.models.response.BannerResponse;
 
 @Repository
